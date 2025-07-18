@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: backend-container
-          image: projeto01-backend:1.5  # TODO: enviar imagem para o dockerhub
-          imagePullPolicy: Never        # TODO: remover, usado apenas para imagens locais
+          image: joaoweslley/projeto01-backend:1.5
+          # imagePullPolicy: Never        # usado apenas para imagens locais
           ports:
             - containerPort: 5000
           # variáveis definidas no configmap e no secret
