@@ -30,9 +30,7 @@ Para executar a aplicação proposta é necessário seguir o seguinte passo a pa
 
     ```bash
     # kind load docker-image <nome-da-imagem:versao>
-    kind load docker-image projeto01-backend:1.5
-    kind load docker-image projeto01-frontend:1.1
-    kind load docker-image postgres:15
+    kind load docker-image postgres:15 # exemplo com a imagem do postgres:15
     ```
 
 4. Quando as imagens forem adicionadas é necessário subir cada um o secret, o confimap e os deployments na ordem a seguir:
