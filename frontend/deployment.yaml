@@ -1,0 +1,41 @@
+# Deployment da aplicação frontend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend-app
+  template:
+    metadata:
+      labels:
+        app: frontend-app
+    spec:
+      containers:
+        - name: front-container
+          image: projeto01-frontend:1.1   # TODO: enviar imagem para dockerhub
+          imagePullPolicy: Never          # TODO: remover, usado apenas para imagens locais
+          ports:
+            - containerPort: 80
+          env:
+            - name: VITE_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-backend
+                  key: VITE_API_URL
+---
+# Service do frontend
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-app
+spec:
+  selector:
+    app: frontend-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

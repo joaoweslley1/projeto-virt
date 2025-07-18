@@ -1,0 +1,11 @@
+# backend-configmap.yaml
+# Armazena variáveis não sensíveis, como o nome do host, a porta e o nome do banco 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-backend # nome do configmap
+data:
+  DB_HOST: "postgres"
+  DB_PORT: "5432"
+  DB_NAME: "mensagensdb"
+  VITE_API_URL: "http://backend.local"

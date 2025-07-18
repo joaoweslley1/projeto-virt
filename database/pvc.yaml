@@ -1,0 +1,12 @@
+# PVC do Banco de dados
+# Ira armazenar os dados de forma persistente
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

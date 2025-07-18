@@ -1,0 +1,67 @@
+# Deployment do backend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-app
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+        - name: backend-container
+          image: projeto01-backend:1.5  # TODO: enviar imagem para o dockerhub
+          imagePullPolicy: Never        # TODO: remover, usado apenas para imagens locais
+          ports:
+            - containerPort: 5000
+          # variáveis definidas no configmap e no secret
+          env:
+            # Hostname do banco
+            - name: DB_HOST             # nome da variável no pod
+              valueFrom:
+                configMapKeyRef:        # origem no configmap
+                  name: config-backend  # nome do configmap
+                  key: DB_HOST          # nome da variável no configmap
+            # Porta do banco
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: config-backend
+                  key: DB_PORT
+            # Nome do banco
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: config-backend
+                  key: DB_NAME
+            # Usuário do banco
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:           # origem no secret
+                  name: secret-database
+                  key: DB_USER
+            # Senha do do usuário do banco
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:           # origem no secret
+                  name: secret-database
+                  key: DB_PASSWORD
+---
+# Service do backend
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-app
+spec:
+  selector:
+    app: backend-app
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: ClusterIP
