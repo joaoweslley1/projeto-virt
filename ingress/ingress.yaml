@@ -3,14 +3,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: backend-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    # endereço de acesso para o frontend
+    # endereço de acesso para a aplicação
     - host: app.local
       http:
         paths:
+          # acesso para o frontend
           - path: /
             pathType: Prefix
             backend:
@@ -18,11 +17,8 @@ spec:
                 name: frontend-app
                 port:
                   number: 80
-    # endereço de acesso para o backend
-    - host: backend.local
-      http:
-        paths:
-          - path: /
+          # acesso para o backend
+          - path: /api
             pathType: Prefix
             backend:
               service:
