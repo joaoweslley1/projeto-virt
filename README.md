@@ -36,12 +36,16 @@ Para executar a aplicação proposta é necessário seguir o seguinte passo a pa
 4. Quando as imagens forem adicionadas é necessário subir cada um o secret, o confimap e os deployments na ordem a seguir:
 
     ```bash
+    # inicia os namespaces
+    kubectl apply -f namespaces.yaml
+
     # inicia o secret, pvc e deploy + service do banco de dados
     kubectl apply -f database/secrets.yaml 
     kubectl apply -f database/pvc.yaml 
     kubectl apply -f database/deployment.yaml
 
-    # inicia o configmap e o deploy + service do backend
+    # inicia o configmap, secrets e o deploy + service do backend
+    kubectl apply -f backend/secrets.yaml 
     kubectl apply -f backend/configmap.yaml 
     kubectl apply -f backend/deployment.yaml
 

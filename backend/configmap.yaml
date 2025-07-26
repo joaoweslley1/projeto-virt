@@ -4,8 +4,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-backend # nome do configmap
+  namespace: app
 data:
-  DB_HOST: "postgres"
+  DB_HOST: "postgres.database.svc.cluster.local" # alterado para permitir a comunicação
   DB_PORT: "5432"
   DB_NAME: "mensagensdb"
   VITE_API_URL: "http://app.local"
