@@ -60,19 +60,19 @@ Para executar a aplicação proposta é necessário seguir o seguinte passo a pa
 
     ```bash
     127.0.0.1   app.local # acessar o frontend
-    127.0.0.1   backend.local # acessar o frontend
     ```
 
 ## Endereço de acesso esperado
 
 - Frontend: `app.local`
-- Backend:  `backend.local`
+- Backend: `app.local/api`
 
 ## Arquitetura
 
 ```bash
 .
 ├── backend
+│   ├── secrets.yaml        # Informações secretas para o backend
 │   ├── configmap.yaml
 │   └── deployment.yaml
 ├── database
@@ -84,10 +84,6 @@ Para executar a aplicação proposta é necessário seguir o seguinte passo a pa
 ├── ingress
 │   └── ingress.yaml
 ├── kind-config.yaml        # Configuração do kind
-├── namespace.yaml          # TODO: implementar lógica dos namespaces
+├── namespace.yaml          
 └── README.md
 ```
-
-## TODO
-
-Implementar divisão por namespaces
