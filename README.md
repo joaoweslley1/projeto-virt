@@ -1,16 +1,21 @@
-# Projeto de Virtualização
+# Deploy de Aplicação com Kubernetes no Kind
 
-Equipe: João Weslley, Judá Valente
+Implementar o deploy de uma aplicação composta por backend, frontend e banco de dados utilizando Kubernetes com Kind. O projeto aborda os seguintes conceitos:
 
-## Objetivo
+- Deployments e StatefulSets  
+- Secrets e ConfigMaps  
+- Namespaces  
+- Ingress
 
-*A descrever*
+## Requisitos
+
+- [Kind](https://kind.sigs.k8s.io/)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/)
+- Docker
 
 ## Execução
 
-Para executar a aplicação proposta é necessário seguir o seguinte passo a passo:
-
-1. Garanta que o kind e o kubectl estejam instalados e funcionais, em seguida clone o respositório.
+1. Clone o repositório:
 
     ```bash
     git clone https://github.com/joaoweslley1/projeto-virt.git
@@ -40,7 +45,7 @@ Para executar a aplicação proposta é necessário seguir o seguinte passo a pa
     kind load docker-image postgres:15 # exemplo com a imagem do postgres:15
     ```
 
-5. Quando as imagens forem adicionadas é necessário subir cada um o secret, o confimap e os deployments na okubectl get pod -n ingress-nginxrdem a seguir:
+5. Quando as imagens forem adicionadas é necessário subir cada um o secret, o configmap e os deployments na seguinte ordem:
 
     ```bash
     # inicia os namespaces
