@@ -1,5 +1,12 @@
 # Deploy de Aplicação com Kubernetes no Kind
 
+## Equipe
+
+- João Weslley  
+- Judá Valente
+
+## Objetivo
+
 Implementar o deploy de uma aplicação composta por backend, frontend e banco de dados utilizando Kubernetes com Kind. O projeto aborda os seguintes conceitos:
 
 - Deployments e StatefulSets  
